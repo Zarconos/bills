@@ -138,6 +138,11 @@ export default class {
       $(`#status-bills-container${this.index}`)
         .html(cards(filteredBills(bills, getStatus(this.index))))
       this.counter ++
+      
+      // On détache la fonction de click des éléments de la première liste
+      bills.forEach(bill => {
+        $(`#open-bill${bill.id}`).off('click');
+      });
     } else {
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
       $(`#status-bills-container${this.index}`)

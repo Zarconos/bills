@@ -1,5 +1,5 @@
 import { ROUTES_PATH } from '../constants/routes.js'
-import { formatDate, formatStatus } from "../app/format.js"
+import { formatDate, formatDateBills, formatStatus } from "../app/format.js"
 import Logout from "./Logout.js"
 
 export default class {
@@ -20,6 +20,7 @@ export default class {
     this.onNavigate(ROUTES_PATH['NewBill'])
   }
 
+  
   handleClickIconEye = (icon) => {
     const billUrl = icon.getAttribute("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
@@ -38,9 +39,10 @@ export default class {
             try {
               return {
                 ...doc,
-                date: formatDate(doc.date),
+                date: formatDatesBills(doc.date),
                 status: formatStatus(doc.status)
               }
+
             } catch(e) {
               // if for some reason, corrupted data was introduced, we manage here failing formatDate function
               // log the error and return unformatted date in that case
@@ -51,7 +53,7 @@ export default class {
                 status: formatStatus(doc.status)
               }
             }
-          })
+          });
           console.log('length', bills.length)
         return bills
       })

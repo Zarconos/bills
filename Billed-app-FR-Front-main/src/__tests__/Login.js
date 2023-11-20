@@ -123,6 +123,7 @@ describe("Given that I am a user on login page", () => {
       document.body.innerHTML = LoginUI();
 
       const inputEmailUser = screen.getByTestId("admin-email-input");
+      console.log(inputEmailUser);
       expect(inputEmailUser.value).toBe("");
 
       const inputPasswordUser = screen.getByTestId("admin-password-input");
